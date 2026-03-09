@@ -18,5 +18,6 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/emunozgutier/iterdict"
-"Bug Tracker" = "https://github.com/emunozgutier/iterdict/issues"
+"Homepage" = "https://github.com/emunozgutier/itertooldict"
+"Documentation" = "https://emunozgutier.github.io/itertooldict/"
+"Bug Tracker" = "https://github.com/emunozgutier/itertooldict/issues"
