@@ -1,26 +1,26 @@
-# iterdict
+# itertooldict
 
 A missing feature of `itertools`: labeled product of multiple choices from a dictionary.
 
 ## Installation
 
 ```bash
-pip install iterdict
+pip install itertooldict
 ```
 
 ## Usage
 
-`iterdict` takes a dictionary where values are iterables and yields dictionaries representing their Cartesian product.
+`itertooldict` takes a dictionary where values are iterables and yields dictionaries representing their Cartesian product.
 
 ```python
-from iterdict import iterdict
+from itertooldict import itertooldict
 
 data = {
     "voltage": ["Vmax", "Vmin"],
     "temp": ["hot", "cold"]
 }
 
-for combo in iterdict(data):
+for combo in itertooldict(data):
     print(combo)
 
 # Output:
@@ -35,7 +35,7 @@ for combo in iterdict(data):
 You can use the `.remove()` method to exclude specific combinations or patterns.
 
 ```python
-it = iterdict(data)
+it = itertooldict(data)
 it.remove({"voltage": "Vmax", "temp": "hot"})
 
 for combo in it:
@@ -52,7 +52,7 @@ You can also remove based on partial matches:
 You can randomize the order of the generated combinations:
 
 ```python
-it = iterdict(data).random()
+it = itertooldict(data).random()
 for combo in it:
     print(combo) # Order will be shuffled
 ```
@@ -62,7 +62,7 @@ for combo in it:
 You can specify the order of keys in the resulting dictionaries:
 
 ```python
-it = iterdict(data)
+it = itertooldict(data)
 it.updateKeyOrder(["temp", "voltage"])
 for combo in it:
     print(combo) # {'temp': 'hot', 'voltage': 'Vmax'}, ...
@@ -70,13 +70,13 @@ for combo in it:
 
 ### Compatibility with list() and enumerate()
 
-`iterdict` works seamlessly with standard Python functions:
+`itertooldict` works seamlessly with standard Python functions:
 
 ```python
 # Convert to list
-all_combos = list(iterdict(data))
+all_combos = list(itertooldict(data))
 
 # Use with enumerate
-for i, combo in enumerate(iterdict(data)):
+for i, combo in enumerate(itertooldict(data)):
     print(f"{i}: {combo}")
 ```

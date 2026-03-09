@@ -1,6 +1,6 @@
 import itertools
 
-class iterdict:
+class itertooldict:
     """
     An iterator that yields dictionaries representing the Cartesian product
     of values in the input dictionary.
