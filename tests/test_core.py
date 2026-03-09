@@ -45,5 +45,29 @@ class TestIterdict(unittest.TestCase):
         with self.assertRaises(ValueError):
             iterdict({"a": []})
 
+    def test_updateKeyOrder(self):
+        data = {"a": [1], "b": [2]}
+        it = iterdict(data)
+        it.updateKeyOrder(["b", "a"])
+        result = list(it)[0]
+        self.assertEqual(list(result.keys()), ["b", "a"])
+
+    def test_random(self):
+        data = {"a": list(range(10)), "b": list(range(10))}
+        it1 = list(iterdict(data))
+        it2 = list(iterdict(data).random())
+        self.assertNotEqual(it1, it2)
+
+    def test_list_and_enumerate(self):
+        data = {"a": [1, 2], "b": [3, 4]}
+        it = iterdict(data)
+        # Check list compatibility
+        l = list(it)
+        self.assertEqual(len(l), 4)
+        # Check enumerate compatibility
+        for i, val in enumerate(iterdict(data)):
+            self.assertEqual(val, l[i])
+
+
 if __name__ == "__main__":
     unittest.main()

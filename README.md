@@ -47,7 +47,36 @@ for combo in it:
 
 You can also remove based on partial matches:
 
+### Randomizing Order
+
+You can randomize the order of the generated combinations:
+
 ```python
-it.remove({"voltage": "Vmin"})
-# Only combinations where voltage is NOT Vmin will be yielded.
+it = iterdict(data).random()
+for combo in it:
+    print(combo) # Order will be shuffled
+```
+
+### Updating Key Order
+
+You can specify the order of keys in the resulting dictionaries:
+
+```python
+it = iterdict(data)
+it.updateKeyOrder(["temp", "voltage"])
+for combo in it:
+    print(combo) # {'temp': 'hot', 'voltage': 'Vmax'}, ...
+```
+
+### Compatibility with list() and enumerate()
+
+`iterdict` works seamlessly with standard Python functions:
+
+```python
+# Convert to list
+all_combos = list(iterdict(data))
+
+# Use with enumerate
+for i, combo in enumerate(iterdict(data)):
+    print(f"{i}: {combo}")
 ```
