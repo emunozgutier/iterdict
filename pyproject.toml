@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "iterdict"
 version = "0.1.0"
 authors = [
-  { name="Eduardo Munoz", email="eduardo@example.com" },
+  { name="Eduardo Munoz", email="emunozgutier@gmail.com" },
 ]
 description = "A missing feature of itertools: labeled product of multiple choices from a dictionary."
 readme = "README.md"
