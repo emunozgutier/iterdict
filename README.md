@@ -2,6 +2,8 @@
 
 A missing feature of `itertools`: labeled product of multiple choices from a dictionary.
 
+**PIP:** [itertooldict on PyPI](https://pypi.org/project/itertooldict/)
+
 ## Installation
 
 ```bash
