@@ -13,7 +13,7 @@ pip install itertooldict
 `itertooldict` takes a dictionary where values are iterables and yields dictionaries representing their Cartesian product. It behaves exactly like `itertools.product` but for dictionaries.
 
 > [!TIP]
-> While it works with standard dictionaries in Python 3.7+, using `collections.OrderedDict` is preferred to ensure consistent key ordering across all environments.
+> While it works with standard dictionaries in Python 3.7+, using `collections.OrderedDict` is preferred to ensure consistent key ordering across all environments when no `keyorder` is specified.
 
 ```python
 from itertooldict import itertooldict
@@ -34,18 +34,19 @@ for combo in itertooldict(data):
 # {'voltage': 'Vmin', 'temp': 'cold'}
 ```
 
-### Repeating the Product
+### Specifying Key Order
 
-You can use the `repeat` argument to repeat the input iterables, just like `itertools.product`.
+You can use the `keyorder` argument to specify the order of keys in the resulting dictionaries and the order in which the product is calculated.
 
 ```python
-data = {"a": [1, 2]}
-for combo in itertooldict(data, repeat=2):
+data = {"a": [1, 2], "b": ["x", "y"]}
+# Iterate with 'b' as the outer loop and 'a' as the inner loop
+for combo in itertooldict(data, keyorder=["b", "a"]):
     print(combo)
-# {'a': 1}
-# {'a': 2}
-# {'a': 1}
-# {'a': 2}
+# {'b': 'x', 'a': 1}
+# {'b': 'x', 'a': 2}
+# {'b': 'y', 'a': 1}
+# {'b': 'y', 'a': 2}
 ```
 
 ### Compatibility with list() and enumerate()

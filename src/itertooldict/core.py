@@ -1,14 +1,15 @@
 import itertools
 
-def itertooldict(data, repeat=1):
+def itertooldict(data, keyorder=None):
     """
     An iterator that yields dictionaries representing the Cartesian product
     of values in the input dictionary.
 
     Args:
-        data (dict): A dictionary where keys are labels and values are iterables. 
+        data (dict): A dictionary where keys are labels and values are iterables.
                     `collections.OrderedDict` is preferred for consistent ordering.
-        repeat (int): Number of times to repeat the input iterables.
+        keyorder (list, optional): Specified order of keys for the product and 
+                                    resulting dictionaries.
 
     Yields:
         dict: A dictionary representing one combination of the Cartesian product.
@@ -16,8 +17,14 @@ def itertooldict(data, repeat=1):
     if not isinstance(data, dict):
         raise TypeError(f"Input must be a dictionary, got {type(data).__name__}")
 
-    keys = data.keys()
-    values = data.values()
+    if keyorder:
+        if set(keyorder) != set(data.keys()):
+            raise ValueError("keyorder must contain the same keys as data")
+        keys = keyorder
+    else:
+        keys = list(data.keys())
     
-    for combo in itertools.product(*values, repeat=repeat):
+    values = [data[k] for k in keys]
+    
+    for combo in itertools.product(*values):
         yield dict(zip(keys, combo))
