@@ -1,6 +1,6 @@
 import itertools
 
-def itertooldict(data, keyorder=None):
+def productDict(data, keyorder=None):
     """
     An iterator that yields dictionaries representing the Cartesian product
     of values in the input dictionary.

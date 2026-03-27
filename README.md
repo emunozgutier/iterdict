@@ -12,13 +12,13 @@ pip install itertooldict
 
 ## Usage
 
-`itertooldict` takes a dictionary where values are iterables and yields dictionaries representing their Cartesian product.
+`productDict` takes a dictionary where values are iterables and yields dictionaries representing their Cartesian product.
 
 > [!IMPORTANT]
 > **`collections.OrderedDict` is the preferred input type.** While standard dictionaries work in modern Python, using `OrderedDict` ensures that the iteration order and dictionary keys remain consistent across all environments.
 
 ```python
-from itertooldict import itertooldict
+from itertooldict import productDict
 from collections import OrderedDict
 
 # Preferred usage with OrderedDict
@@ -27,7 +27,7 @@ data = OrderedDict([
     ("temp", ["hot", "cold"])
 ])
 
-for combo in itertooldict(data):
+for combo in productDict(data):
     print(combo)
 
 # Output:
@@ -44,7 +44,7 @@ You can use the `keyorder` argument to specify the order of keys in the resultin
 ```python
 data = {"a": [1, 2], "b": ["x", "y"]}
 # Iterate with 'b' as the outer loop and 'a' as the inner loop
-for combo in itertooldict(data, keyorder=["b", "a"]):
+for combo in productDict(data, keyorder=["b", "a"]):
     print(combo)
 # {'b': 'x', 'a': 1}
 # {'b': 'x', 'a': 2}
@@ -54,13 +54,13 @@ for combo in itertooldict(data, keyorder=["b", "a"]):
 
 ### Compatibility with list() and enumerate()
 
-`itertooldict` works seamlessly with standard Python functions:
+`productDict` works seamlessly with standard Python functions:
 
 ```python
 # Convert to list
-all_combos = list(itertooldict(data))
+all_combos = list(productDict(data))
 
 # Use with enumerate
-for i, combo in enumerate(itertooldict(data)):
+for i, combo in enumerate(productDict(data)):
     print(f"{i}: {combo}")
 ```

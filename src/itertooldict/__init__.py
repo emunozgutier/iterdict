@@ -1,3 +1,3 @@
-from .core import itertooldict
+from .core import productDict
 
-__all__ = ["itertooldict"]
+__all__ = ["productDict"]
