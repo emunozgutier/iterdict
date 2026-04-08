@@ -25,21 +25,33 @@ from collections import OrderedDict
 data = OrderedDict([
     ("voltage", ["Vmax", "Vmin"]),
     ("temp", ["hot", "cold"]),
-    ("humidity", ["low", "high"])
+    ("speed", ["highSpeed", "lowSpeed"]),
+    ("fw", ["fw1", "fw2", "fw3"])
 ])
 
 for combo in productDict(data):
+    # highSpeed only works on fw3
+    if combo['speed'] == 'highSpeed' and combo['fw'] in ['fw1', 'fw2']:
+        continue
     print(combo)
 
 # Output:
-# {'voltage': 'Vmax', 'temp': 'hot', 'humidity': 'low'}
-# {'voltage': 'Vmax', 'temp': 'hot', 'humidity': 'high'}
-# {'voltage': 'Vmax', 'temp': 'cold', 'humidity': 'low'}
-# {'voltage': 'Vmax', 'temp': 'cold', 'humidity': 'high'}
-# {'voltage': 'Vmin', 'temp': 'hot', 'humidity': 'low'}
-# {'voltage': 'Vmin', 'temp': 'hot', 'humidity': 'high'}
-# {'voltage': 'Vmin', 'temp': 'cold', 'humidity': 'low'}
-# {'voltage': 'Vmin', 'temp': 'cold', 'humidity': 'high'}
+# {'voltage': 'Vmax', 'temp': 'hot', 'speed': 'highSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmax', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw1'}
+# {'voltage': 'Vmax', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw2'}
+# {'voltage': 'Vmax', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmax', 'temp': 'cold', 'speed': 'highSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmax', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw1'}
+# {'voltage': 'Vmax', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw2'}
+# {'voltage': 'Vmax', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmin', 'temp': 'hot', 'speed': 'highSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmin', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw1'}
+# {'voltage': 'Vmin', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw2'}
+# {'voltage': 'Vmin', 'temp': 'hot', 'speed': 'lowSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmin', 'temp': 'cold', 'speed': 'highSpeed', 'fw': 'fw3'}
+# {'voltage': 'Vmin', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw1'}
+# {'voltage': 'Vmin', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw2'}
+# {'voltage': 'Vmin', 'temp': 'cold', 'speed': 'lowSpeed', 'fw': 'fw3'}
 ```
 
 ### Specifying Key Order
